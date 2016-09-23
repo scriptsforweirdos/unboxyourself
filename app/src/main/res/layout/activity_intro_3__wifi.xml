@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="64dp"
+    tools:context="com.kaycleaves.unboxyourself.Intro_3_Manual"
+    android:id="@+id/intro_3_wifi_layout"
+    android:gravity="center_horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/you_have_chosen"
+        android:gravity="center_horizontal"
+        android:id="@+id/line1"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/selected_mode"
+        android:gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You can change your mode anytime from the app's Settings!"
+        android:gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Please select your home network:"
+        android:layout_gravity="center_horizontal"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginBottom="16dp"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ssidspinner"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/wifi_spinner"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="16dp">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/refresh"
+            android:textColor="@color/titletextcolor"
+            android:background="@drawable/button_background"
+            android:onClick="refreshNetworks"
+            android:layout_marginRight="8dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            android:textColor="@color/titletextcolor"
+            android:background="@drawable/button_background"
+            android:onClick="saveSSID"/>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/wifiOutput"
+        android:text=""
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/I_m_ready"
+        android:background="@drawable/button_background"
+        android:textColor="@color/titletextcolor"
+        android:padding="5dp"
+        android:onClick="loadWifiMain"
+        android:id="@+id/wifiStart"/>
+
+</LinearLayout>

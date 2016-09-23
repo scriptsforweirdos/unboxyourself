@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">Unbox Yourself</string>
+    <string name="subtitle_1">"A tiny app to help shy people\nto get out of the house\nmore often"</string>
+    <string name="subtitle_2">to get out of the house more often</string>
+    <string name="first_run_button_v1">Get Me Out of My Box!</string>
+    <string name="gps_hint">"Record when you move from your home.\nMost accurate, but requires Location permission."</string>
+    <string name="wifi_hint">"Record when you lose connection to\nyour home wifi."</string>
+    <string name="tracking_mode">tracking_mode</string>
+    <string name="choose_tracking_pref">How would you like to track when you leave the house?</string>
+    <string name="ok_to_change">(Don\'t worry, you can change this later!)</string>
+    <string name="gps">GPS</string>
+    <string name="wifi">Wifi</string>
+    <string name="manual_hint">Press a button when you go out.</string>
+    <string name="manual">Manual</string>
+    <string name="you_have_chosen">You have chosen</string>
+    <string name="title_activity_intro_3__wifi">Intro_3_Wifi</string>
+    <string name="save">Save</string>
+    <string name="title_activity_intro_3__gps">Intro_3_GPS</string>
+    <string name="I_m_ready">Get Started!</string>
+    <string name="are_you_ready_to_unbox_yourself">Are you ready to Unbox Yourself?</string>
+    <string name="you_can_change_your_mode_anytime_from_the_app_s_settings">You can change your mode anytime from the app\'s Settings!</string>
+    <string name="manual_mode">Manual Mode</string>
+    <string name="logfile_name">Unbox Yourself Log.txt</string>
+    <string name="manual_button_text">I Escaped!</string>
+    <string name="Congratulations">Congrats! You left the house!</string>
+    <string name="refresh">Refresh</string>
+</resources>

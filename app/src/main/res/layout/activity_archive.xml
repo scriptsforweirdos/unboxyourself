@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.kaycleaves.unboxyourself.Archive">
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/button_background"
+        android:text="Export Archive"
+        android:textColor="@color/titletextcolor"
+        android:id="@+id/exportArchiveButton"
+        android:onClick="exportDB"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/exportArchiveButton">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:stretchColumns="1"
+            android:id="@+id/archiveTable">
+
+            <TableRow>
+                <TextView
+                    android:text="#"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold"
+                    android:background="@color/button_pressed"
+                    android:textColor="@color/titletextcolor"
+                    android:padding="5dp"/>
+                <TextView
+                    android:text="Date"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold"
+                    android:background="@color/button_pressed"
+                    android:textColor="@color/titletextcolor"
+                    android:padding="5dp"/>
+                <TextView
+                    android:text="Mode"
+                    android:textAppearance="@android:style/TextAppearance.Large"
+                    android:textStyle="bold"
+                    android:background="@color/button_pressed"
+                    android:gravity="right"
+                    android:textColor="@color/titletextcolor"
+                    android:padding="5dp"/>
+            </TableRow>
+
+
+        </TableLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
+

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="64dp"
+    tools:context="com.kaycleaves.unboxyourself.GPS_Main"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You are currently in GPS Mode.\nYour Current Location is:"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <!--Outputs current coords in Lat, Lng -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/currentLocation"
+        android:textSize="32sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Says "That's X Feet from your home location of Lat, Lng" -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bar"
+        android:id="@+id/distanceFromHome"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Congrats/Currently outside/Last outside -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Foo"
+        android:id="@+id/outingResults"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <!--Clarification -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="italic"
+        android:text="You must travel at least 80 meters (1/2 mile) to register an outing. This app checks your GPS every 10 minutes."
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:layout_gravity="center_horizontal"
+        android:text="Pause Tracker"
+        android:textColor="@color/titletextcolor"
+        android:padding="5dp"
+        android:onClick="pauseTracker"
+        android:id="@+id/pauseButton"/>
+
+</LinearLayout>

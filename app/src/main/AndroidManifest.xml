@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.kaycleaves.unboxyourself">
+
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/exitcolor"
+        android:label="@string/app_name"
+        android:supportsRtl="true">
+        <activity
+            android:name=".Intro_1"
+            android:label="Unbox Yourself!"
+            android:theme="@style/IntroTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Intro_2"
+            android:label="Choose Your Tracker"
+            android:theme="@style/IntroTheme" />
+        <activity
+            android:name=".Intro_3_Manual"
+            android:label="Let&apos;s Get Unboxing!"
+            android:theme="@style/IntroTheme" />
+        <activity
+            android:name=".Intro_3_Wifi"
+            android:label="Select Home Network"
+            android:theme="@style/IntroTheme" />
+        <activity
+            android:name=".Intro_3_GPS"
+            android:label="Enter Home Address"
+            android:theme="@style/IntroTheme" />
+        <activity
+            android:name=".Manual_Main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Wifi_Main"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".GPS_Main"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".Archive"
+            android:theme="@style/AppTheme" />
+    </application>
+
+</manifest>

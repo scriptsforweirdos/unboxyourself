@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="64dp"
+    android:orientation="vertical"
+    tools:context="com.kaycleaves.unboxyourself.Wifi_Main">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You are currently in Wifi Mode.\nYour Current Wifi network is:"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentNetwork"
+        android:textSize="48sp"
+        android:layout_marginBottom="16dp"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/lastOuting"
+        android:text="foo"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/button_background"
+        android:layout_gravity="center_horizontal"
+        android:text="Pause Tracker"
+        android:textColor="@color/titletextcolor"
+        android:padding="5dp"
+        android:onClick="pauseTracker"
+        android:id="@+id/pauseButtonWifi"/>
+
+</LinearLayout>

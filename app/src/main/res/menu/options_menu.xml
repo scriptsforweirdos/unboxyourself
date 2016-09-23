@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/modeChange"
+        android:title="Change Mode"/>
+    <item android:id="@+id/viewArchive"
+        android:title="Outings Archive"/>
+    <item android:id="@+id/addressChange"
+        android:title="Change Address (GPS)" />
+    <item android:id="@+id/networkChange"
+        android:title="Change Network (Wifi)"/>
+</menu>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    tools:context="com.kaycleaves.unboxyourself.Intro_2"
+    android:padding="64dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/choose_tracking_pref"
+        android:id="@+id/textView4"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok_to_change"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:gravity="center_horizontal"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+        <Button
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/gps"
+            android:id="@+id/button2"
+            android:background="@drawable/button_background"
+            android:textColor="@color/titletextcolor"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:onClick="setModeGPS"/>
+
+        <TextView
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/gps_hint"
+            android:id="@+id/textView6"
+            android:lines="2"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:orientation="horizontal"
+        android:layout_height="0dp">
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/wifi"
+            android:id="@+id/button3"
+            android:textColor="@color/titletextcolor"
+            android:background="@drawable/button_background"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:onClick="setModeWifi"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/wifi_hint"
+            android:id="@+id/textView8"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/manual"
+            android:id="@+id/button4"
+            android:textColor="@color/titletextcolor"
+            android:background="@drawable/button_background"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="8dp"
+            android:onClick="setModeManual"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="@string/manual_hint"
+            android:id="@+id/textView10"
+            android:layout_gravity="center_vertical" />
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
