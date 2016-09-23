@@ -14,7 +14,9 @@ Archived outings are stored in a SQLite database on internal storage and can be 
 
 Unbox Yourself doesn't "phone home" to any remote server. It's very explicit about the fact that it's running. I wouldn't recommend trying to install it on anyone else's phone but your own.
 
-Unbox Yourself contains no ads.
+Unbox Yourself contains no ads. I would really prefer that any children of this code also remain ad-free. 
+
+This is pre-pre-pre-not-even-cuneiform-alpha, so use at your own risk.
 
 ## About the Scripts for Weirdos project
 
