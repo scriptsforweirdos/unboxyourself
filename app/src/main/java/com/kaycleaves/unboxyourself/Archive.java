@@ -22,35 +22,40 @@ import java.io.FileWriter;
 import java.util.List;
 
 public class Archive extends AppCompatActivity {
+/*
+ * This class displays all of the outings stored in the database.
+ */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_archive);
-
+        // show the outings
         displayOutings();
     }
 
+    // menu display
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
     }
 
+    // menu behavior
     public boolean onOptionsItemSelected(MenuItem item) {
         // respond to menu item selection
         switch(item.getItemId()) {
             case R.id.modeChange:
-                startActivity(new Intent(this, Intro_2.class));
+                startActivity(new Intent(this, Choose_Mode.class));
                 return true;
             case R.id.viewArchive:
                 startActivity(new Intent(this, Archive.class));
                 return true;
             case R.id.addressChange:
-                startActivity(new Intent(this, Intro_3_GPS.class));
+                startActivity(new Intent(this, GPS_Configuration.class));
                 return true;
             case R.id.networkChange:
-                startActivity(new Intent(this, Intro_3_Wifi.class));
+                startActivity(new Intent(this, Wifi_Configuration.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -59,10 +64,17 @@ public class Archive extends AppCompatActivity {
     }
 
     private void displayOutings() {
+        // open the database
         DatabaseHandler db = new DatabaseHandler(this);
+
+        // retrieve all outings
         List<Outing> allOutings = db.getAllOutings();
+
+        // make a table
         TableLayout ll = (TableLayout)findViewById(R.id.archiveTable);
 
+        // step through the database to make table rows for each outing.
+        // Each row will have 3 cells: ID, date and mode.
         for (Outing outing:allOutings) {
             TableRow row = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -93,7 +105,7 @@ public class Archive extends AppCompatActivity {
             row.addView(modecell);
             ll.addView(row);
         }
-        /* uncomment to pad out scrollview
+        /* uncomment to pad out scrollview with lipsum for testing layout
         for (int i = 0; i < 200; i++) {
             TableRow row = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
@@ -127,22 +139,26 @@ public class Archive extends AppCompatActivity {
         */
     }
 
+    // export database to text file "unboxyourself.csv"
     public void exportDB(View view) {
+        // must have external storage!
         if (externalStorageReady()) {
-            //export to unboxyourself.csv
-
+            // connect to the database and retrieve all the outings
             DatabaseHandler db = new DatabaseHandler(this);
             List<Outing> allOutings = db.getAllOutings();
-
+            // make a directory in external storage
             String folder_main = "UnboxYourself Export";
-
             File exportDir = new File(Environment.getExternalStorageDirectory(), folder_main);
+
+            // make the full path where we will store our file
             String exportPath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + folder_main + "/unboxyourself.csv";
 
+            // make the directory if it doesn't already exist.
             if (!exportDir.exists()) {
                 exportDir.mkdirs();
             }
 
+            // create and write the file.
             File file = new File(exportDir, "unboxyourself.csv");
             try {
                 file.createNewFile();
@@ -154,16 +170,19 @@ public class Archive extends AppCompatActivity {
                     csvWrite.writeNext(dataStr);
                 }
                 csvWrite.close();
+                // Show a confirmation.
                 Toast.makeText(Archive.this, "Archive exported to " + exportPath, Toast.LENGTH_LONG).show();
             } catch (Exception sqlex) {
-                Log.e("ExportDB", sqlex.getMessage(), sqlex);
+                //Log.e("ExportDB", sqlex.getMessage(), sqlex);
             }
         } else {
+            // if there's no storage
             Toast.makeText(Archive.this, "No Writeable External Storage found, could not export!", Toast.LENGTH_LONG).show();
         }
     }
 
     public boolean externalStorageReady() {
+        // Checks if external storage is installed and writable.
         String state = Environment.getExternalStorageState();
 
         if (Environment.MEDIA_MOUNTED.equals(state)) {

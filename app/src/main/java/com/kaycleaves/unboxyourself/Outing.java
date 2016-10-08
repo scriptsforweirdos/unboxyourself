@@ -11,19 +11,22 @@ public class Outing {
     String _date;
     String _mode;
 
+    /* Outings can be referenced with multiple configurations of args. Let's define all possible
+    permutations.*/
+
     // empty constructor
     public Outing() {
 
     }
 
-    // constructor
+    // constructor for when all 3 args are passed.
     public Outing(int id, String date, String mode){
         this._id = id;
         this._date = date;
         this._mode = mode;
     }
 
-    // constructor
+    // constructor if ID is not known
     public Outing(String date, String mode) {
         this._date = date;
         this._mode = mode;

@@ -14,8 +14,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.os.Handler;
 
+/*
+ * Created by Kay Cleaves
+ * Establishes and saves user's home cartesian coordinates.
+ * Works in conjunction with GeocodingLocation class
+ */
 
-public class Intro_3_GPS extends AppCompatActivity {
+public class GPS_Configuration extends AppCompatActivity {
 
     Button addressButton;
     Button startButton;
@@ -28,12 +33,13 @@ public class Intro_3_GPS extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Remove title bar
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_intro_3__gps);
+        setContentView(R.layout.activity_gps_configuration);
 
         // disable the start button until location is saved.
         startButton = (Button)findViewById(R.id.startGPS);
         startButton.setEnabled(false);
 
+        // confirm that they've chosen GPS mode.
         String selectedMode = getMode(this, "tracking_mode");
         displayMode(selectedMode);
 
@@ -41,6 +47,8 @@ public class Intro_3_GPS extends AppCompatActivity {
         latLongTV = (TextView) findViewById(R.id.latLongTV);
 
         addressButton = (Button) findViewById(R.id.addressButton);
+
+        // when they click the address button we need to geocode the address they provided.
         addressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
@@ -67,6 +75,7 @@ public class Intro_3_GPS extends AppCompatActivity {
     }
 
     static private String getMode(Context c, String key) {
+        // retrieve mode from shared prefs
         SharedPreferences settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         String value = settings.getString(key, "");
@@ -74,6 +83,7 @@ public class Intro_3_GPS extends AppCompatActivity {
     }
 
     private class GeocoderHandler extends Handler {
+        // Processes message received from GeocodingLocation class.
         @Override
         public void handleMessage(Message message) {
             String locationAddress;
@@ -91,6 +101,7 @@ public class Intro_3_GPS extends AppCompatActivity {
     }
 
     public void loadGPSMain(View view) {
+        // Once we've found their info, we need to whisk them away into the main app.
 
         // store the fact that they finished the intro
         SharedPreferences sharedPref = this.getSharedPreferences("com.kaycleaves.unboxyourself",Context.MODE_PRIVATE);

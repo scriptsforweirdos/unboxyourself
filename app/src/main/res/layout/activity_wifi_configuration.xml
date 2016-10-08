@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="64dp"
-    tools:context="com.kaycleaves.unboxyourself.Intro_3_Manual"
+    tools:context=".Manual_Configuration"
     android:id="@+id/intro_3_wifi_layout"
     android:gravity="center_horizontal">
 

@@ -22,16 +22,16 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+/*
+ * Created by Kay Cleaves
+ * Tracks when user leaves their home wifi network and stores an outing event to the DB
+ */
 public class Wifi_Main extends AppCompatActivity {
 
     public String currentNetwork;
@@ -42,10 +42,15 @@ public class Wifi_Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wifi_main);
+
+        // I am so good at naming methods! This here be the wifi tracker.
         mainFunction();
     }
 
     public void onResume() {
+        /* the network handler is a background process that doesn't update the view. So,
+         if they have left the app and returned we need force an update. Note that multiple outings
+         in one day don't matter as the app only stores distinct DATEs when they left the house. */
         super.onResume();
 
         // update current network connection
@@ -56,6 +61,7 @@ public class Wifi_Main extends AppCompatActivity {
     }
 
     public void onStop() {
+        // If they kill the app, we need to kill the receiver.
         super.onStop();
         try {
             unregisterReceiver(updateReceiver);
@@ -65,6 +71,7 @@ public class Wifi_Main extends AppCompatActivity {
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        // menu render
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
@@ -74,16 +81,16 @@ public class Wifi_Main extends AppCompatActivity {
         // respond to menu item selection
         switch(item.getItemId()) {
             case R.id.modeChange:
-                startActivity(new Intent(this, Intro_2.class));
+                startActivity(new Intent(this, Choose_Mode.class));
                 return true;
             case R.id.viewArchive:
                 startActivity(new Intent(this, Archive.class));
                 return true;
             case R.id.addressChange:
-                startActivity(new Intent(this, Intro_3_GPS.class));
+                startActivity(new Intent(this, GPS_Configuration.class));
                 return true;
             case R.id.networkChange:
-                startActivity(new Intent(this, Intro_3_Wifi.class));
+                startActivity(new Intent(this, Wifi_Configuration.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -99,7 +106,7 @@ public class Wifi_Main extends AppCompatActivity {
 
             // if they are, proceed.
             if (mode.equals("Wifi")) {
-                Log.d("Receiver", "Wifi Mode confirmed!");
+                //Log.d("Receiver", "Wifi Mode confirmed!");
                 // get their current SSID
                 String homeNetwork = getHomeNetwork(context, "Home_SSID");
                 // find their current network
@@ -116,10 +123,12 @@ public class Wifi_Main extends AppCompatActivity {
         // find their current network
         String currentNetwork = getCurrentSsid(this);
         filter1 = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        // get receiver into android's system so it can run in the background.
         registerReceiver(updateReceiver, filter1);
     }
 
     static private String getMode(Context c, String key) {
+        // get stored mode from prefs
         SharedPreferences settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         String value = settings.getString(key, "");
@@ -127,61 +136,68 @@ public class Wifi_Main extends AppCompatActivity {
     }
 
     public static String getHomeNetwork(Context c, String key) {
+        // get home network from prefs.
         SharedPreferences settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         settings = c.getSharedPreferences("com.kaycleaves.unboxyourself", 0);
         String value = settings.getString(key, "");
-        Log.d("Home_SSID", value);
+        //Log.d("Home_SSID", value);
         return value;
     }
 
     public static String getCurrentSsid(Context context) {
+        // Use the receiver to figure out their current ssid
         String ssid = null;
+
+        // find out the ssid for their current connection
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = cm.getActiveNetworkInfo();
-        if (networkInfo == null) {
+        if (networkInfo == null) { // offline completely.
             ssid = "No Network";
-            Log.d("current network", ssid);
+            //Log.d("current network", ssid);
             return ssid;
         }
 
-        if (networkInfo.isConnected()) {
+        if (networkInfo.isConnected()) { // we have internet somehow!
             final WifiManager wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);
             final WifiInfo connectionInfo = wifiManager.getConnectionInfo();
             if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI && !TextUtils.isEmpty(connectionInfo.getSSID())) {
+                // they're on wifi
                 ssid = connectionInfo.getSSID().replace("\"","");
             } else if (networkInfo.getType() == ConnectivityManager.TYPE_MOBILE) {
+                // they're mobile
                 ssid = "Mobile";
             }
         }
-        Log.d("current network", ssid);
+        //Log.d("current network", ssid);
         return ssid;
     }
 
     public void displayCurrentNetwork(String home, String current) {
+        // creates a user-friendly display of what we've done here.
         String output;
         String output2;
         TextView cn = (TextView)findViewById(R.id.currentNetwork);
         TextView lo = (TextView)findViewById(R.id.lastOuting);
 
-        if (current.equals("No Network")) {
+        if (current.equals("No Network")) { // they went outside!
             output = "None";
             output2 = getString(R.string.Congratulations);
-            logOuting();
-        } else if (current.equals("Mobile")) {
+            logOuting(); // store the outing in the DB.
+        } else if (current.equals("Mobile")) { // also outside!
             output = "Mobile";
             output2 = getString(R.string.Congratulations);
-            logOuting();
-        } else if (current.equals(home)) {
+            logOuting(); // store the outing
+        } else if (current.equals(home)) { // they aren't out of the house
             output = home;
             // get their last outing
             String lastOut = tail();
             output2 = getLastOuting(lastOut);
-            Log.d("Match", "current matches home");
-        } else { // they're on wifi but not at home
+            //Log.d("Match", "current matches home");
+        } else { // they're on wifi but not at home! They're outside!
             output = current;
             output2 = getString(R.string.Congratulations);
-            logOuting();
-            Log.d("Match", "current does not match home");
+            logOuting(); // store the outing
+            //Log.d("Match", "current does not match home");
         }
 
         cn.setText(output);
@@ -189,6 +205,7 @@ public class Wifi_Main extends AppCompatActivity {
     }
 
     private String getLastOuting(String ld) {
+        // Get the last time they went out from the DB
         String output = null;
         if (isValidDate(ld)) {
             // calculate difference in dates

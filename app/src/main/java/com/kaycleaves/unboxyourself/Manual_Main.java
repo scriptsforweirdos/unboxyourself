@@ -1,10 +1,8 @@
 package com.kaycleaves.unboxyourself;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -12,17 +10,17 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 import java.util.concurrent.TimeUnit;
 
+/*
+ * Manual Main
+ * Created by Kay Cleaves
+ * Tracks outings when user presses a button.
+ */
 
 public class Manual_Main extends AppCompatActivity {
     public SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -36,16 +34,19 @@ public class Manual_Main extends AppCompatActivity {
         // find out when they last left the house
         String lastdate = tail();
 
+        // Output results to view.
         showLastOuting(lastdate);
     }
 
     public void onResume() {
+        // when they come back to the app.
         super.onResume();
         String lastdate = tail();
         showLastOuting(lastdate);
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
+        // menu rendering
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.options_menu, menu);
         return true;
@@ -55,16 +56,16 @@ public class Manual_Main extends AppCompatActivity {
         // respond to menu item selection
         switch(item.getItemId()) {
             case R.id.modeChange:
-                startActivity(new Intent(this, Intro_2.class));
+                startActivity(new Intent(this, Choose_Mode.class));
                 return true;
             case R.id.viewArchive:
                 startActivity(new Intent(this, Archive.class));
                 return true;
             case R.id.addressChange:
-                startActivity(new Intent(this, Intro_3_GPS.class));
+                startActivity(new Intent(this, GPS_Configuration.class));
                 return true;
             case R.id.networkChange:
-                startActivity(new Intent(this, Intro_3_Wifi.class));
+                startActivity(new Intent(this, Wifi_Configuration.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -125,14 +126,6 @@ public class Manual_Main extends AppCompatActivity {
         sdf.setTimeZone(TimeZone.getDefault());
         String today = sdf.format(new Date());
 
-        /* old flatfile code
-        // append it to the end of the log file
-        String FILENAME = "Unbox Yourself Log.txt";
-        String newlog = "\n\r" + today;
-        FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_APPEND);
-        fos.write(newlog.getBytes());
-        fos.close();
-        */
         DatabaseHandler db = new DatabaseHandler(this);
         db.addOuting(new Outing(today, "Manual"));
         showLastOuting(today);

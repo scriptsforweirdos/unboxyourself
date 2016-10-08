@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    tools:context="com.kaycleaves.unboxyourself.Intro_2"
+    tools:context=".Choose_Mode"
     android:padding="64dp">
 
     <TextView

@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * Created by Roolet on 9/21/2016.
+ * Handles all database functions for storing and retrieving outings
+ * Works together with Outing class
  */
 public class DatabaseHandler extends SQLiteOpenHelper{
 
@@ -51,7 +53,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    // CRUD
+    // Create/retrieve/update/delete functions below
     // Adding new outing
     public void addOuting(Outing outing) {
         SQLiteDatabase db = this.getWritableDatabase();
