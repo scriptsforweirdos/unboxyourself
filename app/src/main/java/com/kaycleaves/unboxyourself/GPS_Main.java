@@ -43,14 +43,14 @@ public class GPS_Main extends AppCompatActivity {
 
     double currentLat;
     double currentLng;
-    TextView currentLocationDisplay = (TextView) findViewById(R.id.currentLocation);
+    TextView currentLocationDisplay;
     double distanceBetween;
     Location homecoords;
     double homeLat;
     double homeLng;
     private LocationManager lm;
     private MyLocationListener myListener;
-    Button pausebutton = (Button)findViewById(R.id.pauseButton);
+    Button pausebutton;
     public boolean paused = false;
     final private int REQUEST_CODE_ASK_PERMISSIONS = 123;
     public SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
@@ -75,7 +75,9 @@ public class GPS_Main extends AppCompatActivity {
         // turn off the GPS listener
         lm.removeUpdates(myListener);
         // Give feedback to the view.
+        pausebutton = (Button)findViewById(R.id.pauseButton);
         pausebutton.setText("Start Tracker");
+        TextView currentLocationDisplay = (TextView) findViewById(R.id.currentLocation);
         currentLocationDisplay.setText("Tracker Paused");
     }
 
