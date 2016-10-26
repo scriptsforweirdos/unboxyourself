@@ -29,4 +29,4 @@ With this first project I immediately moved the goalposts and wound up taking 2.
 
 I came into this project with a Samsung Galaxy Note 3 running rooted Kitkat, and about 14 years in the LAMP stack.
 
-I'll eventually have a blog entry up with more details about the learning and development process and an apk. I'll come link back when it's ready.
+An installable APK of Unbox Yourself is now available for download at http://kaycleaves.com/unbox-yourself.
